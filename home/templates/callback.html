@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}  {% include 'header.html' %} {% endblock header %}
+
+
+{% block icon-bar %} {% include 'icon-bar.html' %} {% endblock icon-bar %}
+
+{% block content %}
+            <div class="container mb-5">
+                <h3 class="cap">Transaction Complete</h3>
+              <div class="row justify-content-center justify-content-md-around justify-content-lg-center text-warning text-center gy-5">
+                <div class="col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4 ">
+                  <div class="card border-0 bg-transparent">
+                      <img src="img/nike metcon 7.webp" class="card-img-top rounded-circle w-75 mx-auto rounded-circle">
+                      <div class="card-body">
+                        <h5 class="card-title">GhenGhen</h5>
+                        <p class="card-text">Nobody</p>
+                      </div>
+                  </div>
+                </div>
+                
+                <div class="col-10 col-sm-10 col-md-5 col-lg-5 col-xl-5 pt-5">
+                    <h5>Thank you for your patronage.</h5>
+                    <h6>We look forward to doing more business with you.</h6>                    
+                </div>
+              </div>
+          </div>
+
+
+{% endblock content %}
+{% block footer %}  {% include "footer.html" %}  {% endblock footer %} 
+      

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %} {% include 'header.html' %}  {% endblock header %}
+
+{% block back-to-top %} {% include 'back-to-top.html' %} {% endblock back-to-top %}
+
+{% block icon-bar %} {% include 'icon-bar.html' %} {% endblock icon-bar %}
+
+{% block content %}
+<div class="container mb-5">
+    <h3 class="cap">Profile</h3>
+  <div class="row justify-content-center justify-content-md-around justify-content-lg-center text-warning text-center gy-5">
+    <div class="col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4">
+      <div class="card border-0 bg-transparent">
+          <img src="{{profile.img.url}}" class="card-img-top rounded-circle w-75 mx-auto rounded-circle">
+          <div class="card-body">
+            <h5 class="card-title">GhenGhen</h5>
+            <p class="card-text">{{profile.user.username}}</p>
+          </div>
+      </div>
+    </div>
+    
+    <div class="auth-form" >
+      <div class="auth-seperator">
+
+        <form>
+          <div class="form-group">
+            <input type="text" name="first_name" value="{{profile.first_name}}" class="form-control" placeholder="FirstName" id="exampleInputText1">
+          </div>
+          <div class="form-group">
+            <input type="text"  name="last_name" class="form-control form-control-light" placeholder="LastName"  value="{{profile.last_name}}">
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control form-control-light" placeholder="Email" name="username" value="{{profile.email}}">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-light" placeholder="PhoneNumber" name="username" value="{{profile.phone}}">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-light" placeholder="Username" name="username" value="{{profile.user.username}}">
+          </div>
+          
+          <div>
+            <input type="hidden" value="">
+            <a  href="{% url 'profile_update' %}" style="text-decoration: none;" class="theme-btn btn-style-tw mt-4 text-white">Edit Profile</a>
+          </div>        
+        </form>    
+      </div>
+    </div>
+  
+  </div>
+</div>
+{% endblock content %}
+{% block footer %}  {% include "footer.html" %}  {% endblock footer %} 

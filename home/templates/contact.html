@@ -1,0 +1,93 @@
+{% load static %}
+{% block content %}
+        <section class="page-title">
+            <div class="auto-container">
+                <h1 style="margin-top:4rem;margin-bottom:3rem" data-aos="flip-down" data-aos-delay="2" data-aos-duration="3000">Contact</h1>
+                <div class="marquee">
+                    <p style="font-weight: 900;font-size:18px">We would like to hear from you, please kindly fill the form below.</p>
+                </div>
+            </div>
+        </section>
+        <!-- End Page Title -->
+
+
+        <!-- Contact Page Section -->
+        <section class="contact-page-section" style="position:relative;top:2em;">
+            <div class="auto-container">
+                <div class="row clearfix">
+
+                    <!-- Form Column -->
+                    <div class="form-column col-lg-8 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <div class="title-box">
+                                <h3 data-aos="fade-in" data-aos-delay="200" data-aos-duration="3000">We Love To Hear From You</h3>
+                                <div class="text" data-aos="fade-in" data-aos-delay="200" data-aos-duration="3000">Please use the form below to send us your enquiry and we will be pleased to assist in any way that we can.</div>
+                            </div>
+
+                            <!-- Contact Form -->
+                            <div class="contact-form">
+                                <form action="{% url 'contact' %}" method="POST" data-aos="fade-up-right" data-aos-delay="200" data-aos-duration="3000">
+                                    {% csrf_token %}
+                                    <div class="row clearfix">
+
+                                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                            <input type="text" name="full_name" placeholder="Full Name">
+                                        </div>
+
+                                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                            <input type="text" name="phone" placeholder="Phone Number">
+                                        </div>
+
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <input type="email" name="email" placeholder="Email Address">
+                                        </div>
+
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <input type="text" name="subject" value="" placeholder="Subject" required="">
+                                        </div>
+
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <textarea name="message" placeholder="Your Message" cols="30" rows="5"></textarea>
+                                        </div>
+
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <button type="submit" value="Send Message" class="theme-btn btn-style-five"><span class="txt">Submit</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Column -->
+                    <div class="info-column col-lg-4 col-md-12 col-sm-12">
+                        <div class="inner-column" data-aos="flip-down" data-aos-delay="200" data-aos-duration="3000">
+                            <h3>Our Location</h3>
+                            <ul>
+                                <li><strong>GhenGhen Restaurant</strong>77 GhenGhen Ave, Ikeja, Lagos, Nigeria</li>
+                                <li><strong>Have any querry:</strong>Call us on : (+234) 813725254</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!--End Faq Section-->
+
+
+
+        <!-- Map Section -
+        <section class="map-section">
+            <!-- Map Boxed --
+            <div class="map-boxed">
+                <!--Map Outer--
+                <div class="map-outer">
+                    <iframe src="https://maps.google.com/maps?q=CV4%207EZ&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" height="462" allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </section>
+        <!-- End Map Section -->
+</div>
+{% endblock content %}

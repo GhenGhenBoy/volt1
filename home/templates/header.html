@@ -1,0 +1,115 @@
+{% load static %}
+
+<nav id="header" class="navbar navbar-expand-md navbar-light pt-3 pb-3">
+    <div class="container">
+      <div>
+        <button class="openbtn" onclick="openNav()">&#9776;</button>
+      </div>
+      <a class="navbar-brand" href="{% url 'index' %}"><span style="color: rgb(83, 83, 215);">Liya</span><span style="color:orangered ;">Fudz</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> 
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'product' %}">Menu</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link "  href="#" id="navbarDropdown" role="menu" data-bs-toggle="dropdown" aria-expanded="false" class="dropbtn">
+              Services
+            </a>
+            <ul class="dropdown-menu my-n5" aria-labelledby="navbarDropdown">
+                {% if user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'displaycart' %}">Shopcart</a></li>
+                <li><a class="dropdown-item" href="{% url 'signout' %}">Signout</a></li>
+                <li></li>
+                
+              {% else %}
+                <li><a class="dropdown-item" href="{% url 'signin' %}">SignIn</a></li>
+                <li><a class="dropdown-item" href="{% url 'signup' %}">SignUp</a></li>
+              {% endif %}         
+              <!-- <li><hr class="dropdown-divider"></li> -->
+              
+            </ul>
+          </li>
+
+          
+        </ul>        
+      </div>
+    </div>
+
+    {% if user.is_authenticated %}
+          <li class=" dropdown"><img style="height: 8vh;" src="{{request.user.profile.img.url}}" class="rounded-circle w-10 mx-auto rounded-circle">
+            <a  href="#" id="navbarDropdown" role="menu" data-bs-toggle="dropdown" aria-expanded="false" class="dropbtn">
+            </a>
+            <ul class="dropdown-menu my-n5" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item text-white" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="dropdown-item text-white" href="{% url 'signout' %}">Signout</a></li>
+            </ul>
+         <li style="color: peachpuff;font-weight:900;margin-left:.6rem"> {{user.username}}</li>
+    {% else %}
+
+    <div class="others-options d-flex align-items-center">
+      <div class="option-item">
+        <div class="cart-btn">
+          <a href="shopcart.html">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="">0</span>
+            <input type="hidden" id="" value="">
+              <input type="hidden" id="" value="">
+          </a>
+         {% endif %}
+       
+        </div>
+      </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
+            
+      <div class="card border-0 bg-transparent"style="border-bottom-style: solid;">
+        <img src="{% static '' %}img/Nosa2.jpeg" class="card-img-top rounded-circle  mx-auto" style="height: 140px; width:55%;">
+        <div class="card-body centered">
+          <h5 class="card-title text-white" style="font-weight: bold;">Nosa John</h5>
+          <p class="" style="font-weight: 500;color:darkgoldenrod;font-size:17px"> FullStack Software Engineer</p>
+          <p class="text-white">(+234) 8137252546</p>
+        </div>
+      </div>
+
+      <div class="col-9 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+        <ul class="list-unstyled">
+          {% if user.is_authenticated %}
+          <li><a class="mb-1" href="{% url 'index' %}">Home</a></li>
+          <li><a class="mb-1" href="{% url 'profile_update' %}">Profile</a></li>
+          <li><a class="mb-1" href="{% url 'displaycart' %}">Shopcart</a></li>
+          <li><a class="mb-1" href="{% url 'about' %}">About</a></li>
+          <li><a class="mb-1" href="{% url 'signout' %}">Signout</a></li>
+          <li><a class="mb-1" href="{% url 'product' %}">Menu</a>
+          {% else %}
+          <li><a class="mb-1" href="{% url 'signin' %}">SignIn</a></li>
+          <li><a class="mb-1" href="{% url 'signup' %}">SignUp</a></li>
+          <li><a class="mb-1" href="{% url 'about' %}">About</a></li>
+          <li><a class="mb-1" href="{% url 'product' %}">Menu</a>
+          {% endif %} 
+          
+        </ul>
+     </div>
+          </div>
+    </div>  
+  </nav>
+  {% if messages %}
+    {% for item in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{item}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      
+    {% endfor %}
+  {% endif %}

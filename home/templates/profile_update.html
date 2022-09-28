@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %} {% include 'header.html' %}  {% endblock header %}
+{% block back-to-top %} {% include 'back-to-top.html' %} {% endblock back-to-top %}
+
+{% block icon-bar %} {% include 'icon-bar.html' %} {% endblock icon-bar %}
+
+{% block content %}
+<div class="container mb-5">
+    <h3 class="cap">Edit Profile</h3>
+  <div class="row justify-content-center justify-content-md-around justify-content-lg-center text-warning text-center gy-5">
+    <div class="col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4">
+      <div class="card border-0 bg-transparent">
+          <img src="{{profile.img.url}}" class="card-img-top rounded-circle w-75 mx-auto rounded-circle">
+          <div class="card-body">
+            <h5 class="card-title">GhenGhen</h5>
+          </div>
+      </div>
+    </div>
+    
+    <div class="col-10 col-sm-10 col-md-5 col-lg-5 col-xl-5">
+      <div class="profile-form px-lg-3 text-start">
+          <form class="px-lg-1" action="{% url 'profile_update' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            {{update.as_p}}
+                <button type="submit" class="theme-btn btn-style-tw">Update</button>
+          </form>
+      </div>                                    
+    </div>
+    <div class="col-10 col-sm-10 col-md-2 col-lg-3 col-xl-3 d-none d-md-block">
+        
+        <ul class="list-unstyled callback">
+          <li class="mb-3"><a href="#" class="btn w-75">Home</a></li>
+          <li class="mb-3"><a href="#" class="btn w-75">Brand</a></li>
+          <li class="mb-3"><a href="#" class="btn w-75">Profile</a></li>
+          <li class="mb-3"><a href="#" class="btn w-75">Profile update</a></li>
+          <li class="mb-3"><a href="#" class="btn w-75">Update Password</a></li>
+          <li class="mb-3"><a href="#" class="btn w-75">transaction Details</a></li>
+        </ul>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block footer %}  {% include "footer.html" %}  {% endblock footer %} 

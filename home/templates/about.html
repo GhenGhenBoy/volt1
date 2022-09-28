@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block back-to-top %} {% include 'back-to-top.html' %} {% endblock back-to-top %}
+
+{% block icon-bar %} {% include 'icon-bar.html' %} {% endblock icon-bar %}
+
+{% block content %}
+{% block header2 %}  {% include "header2.html" %}  {% endblock header2 %}
+{% block offer-section %} {% include 'offer-section.html' %} {% endblock offer-section %}
+        <div >
+            <section class="page-title">
+                <div class="auto-container">
+                    <div class="sec-title centered">
+                        <h3 class="cap">About Us</h3>
+                    </div>
+                    <!-- <ul class="bread-crumb clearfix">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li>Cart</li>
+                    </ul> -->
+                </div>
+            </section>
+            <!-- End Page Title -->
+
+
+            <!-- About Section Two -->
+            <section class="about-section-two mb-5">
+                <div class="auto-container">
+                    <div class="row clearfix">
+
+                        <!-- Content Column -->
+                        <div class="content-column col-lg-7 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <h2>Some Words About Us <br> &amp; Our Fast Food</h2>
+                                <div class="text">
+                                    <p>Liya Mobile Restaurant and Take away was established in 2011 and we have built a reputation for the fresh 
+                                        taste of our food and our in-house and take away service.</p>
+                                    
+                                    <p>Quality Intercontinental cuisine to enjoy in our restaurant or take away. We only use the best and freshest ingredients 
+                                        to offer you the traditional tasty Intercontinental cuisines.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Images Column -->
+                        <div class="images-column col-lg-5 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="image">
+                                    <img src="{% static '' %}img/images (46).jpeg" alt="">
+                                </div>
+                                <!-- <div class="image-two">
+                                    <img src="assets/images/resource/about-2.jpg" alt="" />
+                                </div> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- End About Section Two -->
+
+        </div>
+        <!--Content done-->
+
+        <!--Static Foot SECTION-->
+
+{% endblock content %}
+
+{% block imagefooter %} {% include 'imagefooter.html' %} {% endblock imagefooter %}
+{% block footer %}  {% include "footer.html" %}  {% endblock footer %} 

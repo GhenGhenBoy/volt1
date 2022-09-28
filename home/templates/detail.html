@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block back-to-top %} {% include 'back-to-top.html' %} {% endblock back-to-top %}
+
+{% block icon-bar %} {% include 'icon-bar.html' %} {% endblock icon-bar %}
+
+
+
+{% block content %}
+{% block header2 %} {% include 'header2.html' %}{% endblock header2 %}
+
+{% block banner %} {% include 'banner.html' %} {% endblock banner %}
+    <div class="nosa">
+      <div id="" class="auto-container" >
+        <div class="row pb-4 pt-5" style="text-align: center" >
+          <div class="col-6 col-sm-6 col-md-3"><a href="#breakfast"><button class="button"><span>BREAKFAST </span></button></a></div>
+          <div class="col-6 col-sm-6 col-md-3"><a href="#lunch"><button class="button"><span>LUNCH </span></button></a></div>
+          <div class="col-6 col-sm-6 col-md-3"><a href="#dinner"><button class="button"><span>DINNER</span></button></a></div>
+          <div class="col-6 col-sm-6 col-md-3"><a href="#dessert"><button class="button"><span>DESSERT </span></button></a></div>
+        </div>
+      
+      
+        <!---->
+        
+      
+        
+      
+        <!-- Sec Title -->
+        <div id="breakfast" class="sec-title centered">
+          <h2>Breakfast</h2>
+        </div>
+      
+        <!-- MixitUp Galery -->
+        <div class="mixitup-gallery">
+          <div class="filter-list row clearfix">
+             <!-- Products Block -->
+            <div class="product-block  col-lg-3 col-md-6 col-sm-6 col-6 mb-5" style="display: inline-block;">
+              <div class="inner-box">
+                <figure class="image-box">
+                  <img src="{{detail.img.url}}" alt="">
+                </figure>
+                <div class="lower-content">
+                  <h4><a href="shop-single.html" style="font-weight:bold;color:black">{{item.name}}</a></h4>
+                  <div class="text">{{detail.description}}</div>
+                  <div class="price">£{{detail.price}}  <i class="fas fa-shopping-cart checked"></i> </div>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <div class="lower-box">
+                    <form action="{% url 'shopcart' %}" method='POST'>
+                    {% csrf_token %}
+                        <input type="hidden" name="product" value="{{detail.id}}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn theme-btn btn-style-five mt-4"><span class="txt">Add to cart</span></button type="submit">
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+               
+          
+      
+           
+
+
+
+<!-- MixitUp Galery -->
+
+ {% endblock content %}
+
+ {% block footer %} {% include 'footer.html' %} {% endblock footer %}

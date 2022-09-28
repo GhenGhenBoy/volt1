@@ -1,0 +1,22 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-10 col-sm-10 col-md-8 col-lg-8 d-none d-lg-block"></div>
+        <div class="col-10 col-sm-10 col-md-8 col-lg-8">
+            <div class="card w-100">
+                <img src="{{detail.img.url}}" class="card-img-top img h-20">
+                <div class="card-body">
+                    <h5 class="card-title">Product: {{detail.name}}</h5>
+                    <p class="card-text">Price: {{item.price}}</p>
+                    <p class="card-text text-truncate">Description</p>
+                    <form action="{% url 'shopcart' %}" method='POST'>
+                    {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{detail.id}}">
+                        <input type="number" name="quantity" value="1" min="{{detail.min_quantity}}" max="{{detail_max_quantity}}" class="form-control shadow none my-3 border-warning" style="width: 60px;">
+                        <button type="submit" class="btn btn-warning text-white w-25">Add to Cart</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>

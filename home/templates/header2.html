@@ -1,0 +1,22 @@
+
+
+<div class="topnav" id="myTopnav">
+
+  
+  <a class="navbar-brand" style="float: left;font-weight:600;padding-left:1.3rem"  href="{% url 'index' %}"><span style="color: rgb(83, 83, 215); font-size:25px">Liya</span><span style="color:orangered ;font-size:25px">Fudz</span></a>
+
+    <a href="{% url 'index' %}" class="active">Home</a>
+    <a href="{% url 'about' %}">About</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'displaycart' %}">Shopcart</a>
+    <a href="{% url 'product' %}">Menu</a>
+    <a href="{% url 'signout' %}">Signout</a>
+
+    {% else %}
+      <a  href="{% url 'signin' %}">SignIn</a></li>
+      <a  href="{% url 'signup' %}">SignUp</a></li>
+    {% endif %}  
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+</div>
