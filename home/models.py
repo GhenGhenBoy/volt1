@@ -36,7 +36,7 @@ class Contact(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=250)
-    img = models.ImageField(upload_to= 'product', default='prod.jpg')
+    img = models.ImageField(upload_to= 'product', default='product/onion-rings-d1.jpg')
     price = models.IntegerField()
     max_quantity = models.IntegerField()
     min_quantity = models.IntegerField(default=False)

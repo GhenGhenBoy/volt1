@@ -103,6 +103,7 @@ def profile(request):
     return render(request, 'profile.html', context)
 
 
+@login_required(login_url='signin')
 def profile_update(request):
     profile = Profile.objects.get(user__username = request.user.username)
     update = ProfileUpdate(instance=request.user.profile)

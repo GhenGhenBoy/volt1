@@ -7,6 +7,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
      list_display = ['id','name','img','price','max_quantity','min_quantity','display','latest','trending','breakfast','lunch','dinner','dessert', 'description','created','update']
+     list_editable= ['img']
 
 class ProfileAdmin(admin.ModelAdmin):
      list_display = ['id','user','first_name','last_name','email','phone','address','state']
