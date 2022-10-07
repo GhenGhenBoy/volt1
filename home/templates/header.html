@@ -46,30 +46,46 @@
     </div>
 
     {% if user.is_authenticated %}
+    
           <li class=" dropdown"><img style="height: 8vh;" src="{{request.user.profile.img.url}}" class="rounded-circle w-10 mx-auto rounded-circle">
             <a  href="#" id="navbarDropdown" role="menu" data-bs-toggle="dropdown" aria-expanded="false" class="dropbtn">
             </a>
             <ul class="dropdown-menu my-n5" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item text-white" href="{% url 'profile' %}">Profile</a></li>
-                <li><a class="dropdown-item text-white" href="{% url 'signout' %}">Signout</a></li>
+                <li><a class="dropdown-item text-white" href="{% url 'signout' %}">Signout<i class="fa-solid fa-right-to-bracket fa-1x text-white" style="padding-left:1rem"></i></a></li>
             </ul>
+            
+            
          <li style="color: peachpuff;font-weight:900;margin-left:.6rem"> {{user.username}}</li>
+
+         <div class="others-options d-flex align-items-center ps-3 pe-4">
+          <div class="option-item">
+            <div class="cart-btn">
+              <a href=" {% url 'displaycart' %}">
+                <i class="fas fa-shopping-cart"></i>
+                {% if cartcount > 0 %}
+                  <span>{{cartcount}}</span>
+                {% else %}
+                  <span>0</span>
+                {% endif %}
+              </a>
+              
+            </div>
+          </div>
+        </div>
     {% else %}
 
-    <div class="others-options d-flex align-items-center">
+    <div class="others-options d-flex align-items-center pe-4">
       <div class="option-item">
         <div class="cart-btn">
-          <a href="shopcart.html">
+          <a href=" {% url 'displaycart' %}">
             <i class="fas fa-shopping-cart"></i>
-            <span id="">0</span>
-            <input type="hidden" id="" value="">
-              <input type="hidden" id="" value="">
+              <span>0</span>
           </a>
-         {% endif %}
-       
         </div>
       </div>
     </div>
+    {% endif %}
 
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
@@ -106,7 +122,7 @@
   </nav>
   {% if messages %}
     {% for item in messages %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
         <strong>{{item}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>

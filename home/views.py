@@ -2,8 +2,8 @@ import uuid
 import json
 import requests
 
-from email import message
-import imp
+# from email import message
+# import imp
 from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth import logout, login, authenticate
 from django.contrib import messages
@@ -275,7 +275,8 @@ def pay(request):
     # collect data to sendout to paystack
     api_key = 'sk_test_be6ec1bb91a445f556403cce62354e38ea76ed1a'
     curl = 'https://api.paystack.co/transaction/initialize'
-    cburl = 'https://localhost:8000/callback'
+    cburl = 'https://54.87.22.245/callback'
+    # cburl = 'https://localhost:8000/callback'
     user = User.objects.get(username = request.user.username)
     email = user.email
     total = float(request.POST['total']) * 100

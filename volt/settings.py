@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-@ikodss4!0a%smn0mmxri@4)rc&&a12%pf+*_vfm7wrm40zk_k
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['54.87.22.245']
 
 
 # Application definition
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'home.context_processor.cartread'
             ],
         },
     },
@@ -131,7 +133,7 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = []
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'home/static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '/media')
