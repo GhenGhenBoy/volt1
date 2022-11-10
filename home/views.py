@@ -295,7 +295,7 @@ def pay(request):
         messages.error(request, 'Network busy, refresh and try again')
     else:
         transback = json.loads(r.text)
-        rdurl = transback['data']['authorization.url']
+        rdurl = transback['data']['authorization_url']
         return redirect(rdurl)
     return redirect('displaycart')
 
