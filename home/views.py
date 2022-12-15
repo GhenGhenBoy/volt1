@@ -5,7 +5,7 @@ import requests
 # from email import message
 # import imp
 from django.shortcuts import redirect, render, HttpResponse
-from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -59,36 +59,43 @@ def signin(request):
     if request.method == 'POST':
         usernamee = request.POST['username']
         passwrodd = request.POST['password']
-        user = authenticate(request,username= usernamee, password=passwrodd)
+        user = authenticate(username= usernamee, password=passwrodd)
+        # user = authenticate(request,username= usernamee, password=passwrodd)
         if user is not None:
             login(request, user)
             messages.success(request, 'Signin successfull')
             return redirect('index')
         else:
             messages.warning(request, 'Username/Password incorrect.')
-            return redirect('index')
+            return redirect('signin')
     return render(request, 'signin.html')
 
 def signup(request):
     form = SignupForm()
     if request.method == 'POST':
         phone = request.POST['phone']
+        address = request.POST['address']
+        state = request.POST['state']
+        img = request.POST['img']
         form = SignupForm(request.POST)
         if form.is_valid():
-            newuser = form.save()
-            newprofile = Profile(user= newuser)
-            newprofile.first_name= newuser.first_name
-            newprofile.last_name= newuser.last_name
-            newprofile.email= newuser.email
-            newprofile.phone= phone
+            user = form.save()
+            newprofile = Profile(user= user)
+            newprofile.username = user.username
+            newprofile.first_name = user.first_name
+            newprofile.last_name = user.last_name
+            newprofile.email = user.email
+            newprofile.phone = phone
+            newprofile.address = address
+            newprofile.state = state
+            newprofile.img = img
             newprofile.save()
-            login(request, newuser)
+            login(request, user)
             messages.success(request, 'Signup succesful')
             return redirect('index')
         else:
             messages.error(request, form.errors)
             return redirect('signup')
-
     return render(request, 'signup.html')
 # authentication done
 
@@ -140,7 +147,7 @@ def product(request):
     }
     return render(request, 'product.html', context)
 
-
+@login_required(login_url='signin')
 def detail(request, id):
     detail = Product.objects.get(pk=id)
     context = {
@@ -179,7 +186,7 @@ def shopcart(request):
                 newitem.paid = False
                 newitem.save()
                 messages.success(request, 'Item added to cart.')
-                return redirect('index')
+                return redirect('product')
             
         else:
             newcart = Shopcart() #create an order for the first time
@@ -201,6 +208,7 @@ def shopcart(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required(login_url='signin')
 def displaycart(request):
     trolley = Shopcart.objects.filter(user__username = request.user.username, paid=False)
     profile = Profile.objects.get(user__username = request.user.username)
@@ -276,8 +284,8 @@ def pay(request):
     # collect data to sendout to paystack
     api_key = 'sk_test_be6ec1bb91a445f556403cce62354e38ea76ed1a'
     curl = 'https://api.paystack.co/transaction/initialize'
-    cburl = 'https://34.207.234.114/callback'
-    # cburl = 'https://localhost:8000/callback'
+    # cburl = 'http://34.207.234.114/callback'
+    cburl = 'http://localhost:8000/callback'
     user = User.objects.get(username = request.user.username)
     email = user.email
     total = float(request.POST['total']) * 100
@@ -285,8 +293,7 @@ def pay(request):
     transac_code = str(uuid.uuid4())
 
     headers = {'Authorization': f'Bearer {api_key}'}
-    data = {'reference':transac_code, 'amount':int(total),'email':email,
-     'order_number':cart_no, 'callback_url':cburl, 'currency':'NGN'}
+    data = {'reference':transac_code, 'amount':int(total),'email':email, 'order_number':cart_no, 'callback_url':cburl, 'currency':'NGN'}
 
     # integrating to paystack
     try:
@@ -295,14 +302,14 @@ def pay(request):
         messages.error(request, 'Network busy, refresh and try again')
     else:
         transback = json.loads(r.text)
-        rdurl = transback['data']['authorization.url']
+        rdurl = transback['data']['authorization_url']
         return redirect(rdurl)
     return redirect('displaycart')
 
 
 def callback(request):
-    profile = Profile.objects.get(user_username = request.user.username)
-    cart =Shopcart.objects.filter(user_username = request.user.username, paid=False)
+    profile = Profile.objects.get(user__username = request.user.username)
+    cart =Shopcart.objects.filter(user__username = request.user.username, paid=False)
 
     for pro in cart:
         pro.paid = True
