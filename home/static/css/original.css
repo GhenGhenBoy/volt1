@@ -2865,6 +2865,14 @@ img {
 
 }
 
+.products-section-three {
+  display: none;
+}
+
+.combo-section {
+  display: none;
+}
+
 /* OverlayBlock*/
 @media only screen and (max-width: 1023px) {
 .flavour-block .inner-box .image .overlay-box .content {
@@ -3040,6 +3048,13 @@ h2 {
   outline: none;
 }
 
+.products-section-three {
+  display: none;
+}
+
+.combo-section {
+  display: none;
+}
 /* Add an active class to highlight the current page */
 .topnav a.active {
   background-color: rgb(140, 27, 27);
@@ -3502,7 +3517,7 @@ h2 {
       transition: none;
       }
       .geeks:hover img {
-        transform: scale(1.4);   
+        transform: scale(1.1);   
       }
  
   .foota{
