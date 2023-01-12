@@ -30,6 +30,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['34.207.234.114', '*']
 
+ALLOWED_HOSTS = ['3.86.58.13', '*']
+
 
 # Application definition
 

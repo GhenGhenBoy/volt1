@@ -271,21 +271,23 @@ class CheckoutView(View):
         total = vat + subtotal
 
         context = {
-            'summary':summary,
-            'total':total,
+            'summary': summary,
+            'total': total,
         }
+        
         return render(request, 'checkout.html', context)
 
 #checkout using class based view and axios get request done
 
 
+
 def pay(request):
   if request.method == 'POST':
     # collect data to sendout to paystack
-    api_key = 'sk_test_be6ec1bb91a445f556403cce62354e38ea76ed1a'
     curl = 'https://api.paystack.co/transaction/initialize'
-    # cburl = 'http://34.207.234.114/callback'
-    cburl = 'http://localhost:8000/callback'
+    api_key = 'sk_test_be6ec1bb91a445f556403cce62354e38ea76ed1a'
+    cburl = 'http://34.207.234.114/callback'
+    # cburl = 'https://localhost:8000/callback'
     user = User.objects.get(username = request.user.username)
     email = user.email
     total = float(request.POST['total']) * 100
@@ -293,7 +295,8 @@ def pay(request):
     transac_code = str(uuid.uuid4())
 
     headers = {'Authorization': f'Bearer {api_key}'}
-    data = {'reference':transac_code, 'amount':int(total),'email':email, 'order_number':cart_no, 'callback_url':cburl, 'currency':'NGN'}
+    data = {'reference':transac_code, 'amount':int(total),'email':email,
+     'order_number':cart_no, 'callback_url':cburl, 'currency':'NGN'}
 
     # integrating to paystack
     try:
@@ -305,6 +308,7 @@ def pay(request):
         rdurl = transback['data']['authorization_url']
         return redirect(rdurl)
     return redirect('displaycart')
+
 
 
 def callback(request):
